@@ -327,10 +327,16 @@ def get_encryptor() -> PersonalDataEncryptor:
     """
     global _encryptor_instance
     if _encryptor_instance is None:
-        from config import config
+        # Используем BOT_TOKEN как основу для ключа шифрования
+        from config import BOT_TOKEN
+
+        # Создаем ключ шифрования на основе BOT_TOKEN
+        # Дополняем или обрезаем до 32 символов
+        encryption_key = BOT_TOKEN.ljust(32, '0')[:32] if BOT_TOKEN else 'default-encryption-key-32-bytes-long!'
+
         _encryptor_instance = PersonalDataEncryptor(
-            master_key=config.ENCRYPTION_KEY,
-            key_rotation_days=config.KEY_ROTATION_DAYS
+            master_key=encryption_key,
+            key_rotation_days=90  # стандартное значение
         )
     return _encryptor_instance
 

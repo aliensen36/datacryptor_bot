@@ -8,7 +8,7 @@ from aiogram.fsm.state import State, StatesGroup
 
 from core.encryption import get_encryptor
 from services.user_service import UserService
-from services.file_processor import FileProcessor
+# from services.file_processor import FileProcessor
 from utils.validators import (
     validate_phone,
     validate_passport_series,
@@ -38,7 +38,7 @@ class PersonalDataStates(StatesGroup):
 # Инициализация сервисов
 encryptor = get_encryptor()
 user_service = UserService()
-file_processor = FileProcessor()
+# file_processor = FileProcessor()
 
 
 # ===== ОСНОВНЫЕ ХЕНДЛЕРЫ =====
